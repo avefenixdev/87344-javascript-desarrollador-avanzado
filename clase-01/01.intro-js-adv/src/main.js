@@ -188,3 +188,54 @@ console.log(data)
 // ! No es redeclarable
 //let dato = 'Pedro'
 //let dato = 'Juan'
+
+console.warn('// ! Métodos nativos de los objetos')
+
+const producto = {
+  nombre: 'Notebook Gamer',
+  categoria: 'Computación',
+  disponibilidad: true,
+  stock: 20,
+  precio: 899.99
+}
+
+console.warn('// ! Object.keys()')
+
+console.log(Object.keys(producto))
+
+console.warn('// ! Object.values()')
+
+console.log(Object.values(producto))
+
+console.log('// ! Object.entries()')
+
+console.log(Object.entries(producto))
+
+// Matriz
+
+const matriz = [
+  [2, 5], 
+  [8, 3]
+]
+
+const datos = [
+  ['luis', 22, 'acuario'], // persona 1
+  ['juana', 33, 'geminis'] // persona 2
+]
+
+console.log(matriz)
+console.log(datos)
+
+console.warn('// ! .hasOwnProperty()')
+
+console.log(producto.hasOwnProperty('nombre')) // true
+console.log(producto.hasOwnProperty('apellido')) // false
+
+for (const key in producto) {
+  debugger
+  if (!Object.hasOwn(producto, key)) continue;
+  
+  const element = producto[key];
+  console.log(element)
+  
+}
