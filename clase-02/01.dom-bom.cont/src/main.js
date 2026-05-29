@@ -62,4 +62,64 @@ Nombre (texto), Email (email), edad (número) Y un botón enviar
 //  ! -------------------------------------------------------------------
 //  ! -------------------------------------------------------------------
 
+const form = document.getElementById('formu-desafio')
+const errorNombre = document.getElementById('error-nombre')
+const errorEmail = document.getElementById('error-email')
+const errorEdad = document.getElementById('error-edad')
 
+console.dir(form)
+const inputNombre = form[0]
+const inputEmail = form[1]
+const inputEdad = form[2]
+console.log(inputNombre)
+console.log(inputEmail)
+console.log(inputEdad)
+
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault() // Evita la recarga.
+    let inputNombreValue = inputNombre.value
+    //console.log(inputNombreValue)
+    inputNombreValue = inputNombreValue.trim()
+    //console.log(inputNombreValue)
+    const inputEmailValue = inputEmail.value.trim()
+    const inputEdadValue = inputEdad.value.trim()
+    
+   /*  console.log(inputNombreValue)
+    console.log(inputEmailValue)
+    console.log(inputEdadValue) */
+
+    if ( inputNombreValue === "") {
+        errorNombre.textContent = 'El nombre es obligatorio'
+        errorNombre.style.color = 'crimson'
+        return // break
+    } else {
+        errorNombre.textContent = ''
+    }
+
+    if ( inputEmailValue === "") {
+        errorEmail.textContent = 'El email es obligatorio'
+        errorEmail.style.color = 'crimson'
+        return // break
+    } else {
+        errorEmail.textContent = ''
+    }
+
+     if ( inputEdadValue === "") {
+        errorEdad.textContent = 'El edad es obligatorio'
+        errorEdad.style.color = 'crimson'
+        return // break
+    } else {
+        errorEdad.textContent = ''
+    }
+
+    const obj = {
+        [inputNombre.name]: inputNombre.value,
+        [inputEmail.name]: inputEmail.value,
+        [inputEdad.name]: inputEdad.value,
+    }
+    console.log(obj)
+    
+
+    form.reset()
+})
