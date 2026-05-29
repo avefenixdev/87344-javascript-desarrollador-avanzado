@@ -1,4 +1,5 @@
 import './style.css'
+import { validarEdad, validarEmail, validarNombre } from './validations'
 
 console.warn('// ! Crear elementos de DOM')
 
@@ -89,7 +90,7 @@ form.addEventListener('submit', (e) => {
     console.log(inputEmailValue)
     console.log(inputEdadValue) */
 
-    if ( inputNombreValue === "") {
+    if ( validarNombre(inputNombreValue) ) {
         errorNombre.textContent = 'El nombre es obligatorio'
         errorNombre.style.color = 'crimson'
         return // break
@@ -101,11 +102,15 @@ form.addEventListener('submit', (e) => {
         errorEmail.textContent = 'El email es obligatorio'
         errorEmail.style.color = 'crimson'
         return // break
-    } else {
+    } else if ( !validarEmail(inputEmailValue) ) {
+        errorEmail.textContent = 'El mail no es válido'
+        errorEmail.style.color = 'crimson'
+        return // break
+    }   else {
         errorEmail.textContent = ''
     }
 
-     if ( inputEdadValue === "") {
+    if ( !validarEdad(inputEdadValue) ) {
         errorEdad.textContent = 'El edad es obligatorio'
         errorEdad.style.color = 'crimson'
         return // break
