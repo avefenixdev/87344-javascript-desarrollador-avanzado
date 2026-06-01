@@ -11,18 +11,23 @@ console.warn('/* Comunicación asincrónica con AJAX */')
 /* Un objeto llama XMLHttpRequest (Con eso trabajamos) */
 /* --------------------------------------------------- */
 
+// XMLHttpRequest (BOM) -> Hacer peticiones y recibir respuesta bajo el protoloco http -> callback
+// axios (Librería) -> Hacer peticiones y recibir respuestas -> Utilizar por detrás XMLHttpRequest -> promisas
+// fetch (BOM) -> Hacer peticiones y recibir respuesta bajo el protoloco http -> promisas (Azucar sintactica)
+
 // ----> 
 
 // ! XML (Archivo de texto plano)
-// * Nos permite transmitir información de manera estandar y liviana del backend al frontend por ejemplo
+// * Nos permite transmitir información de manera estandar y liviana del backend al frontend y viceversa
 
 // https://es.wikipedia.org/wiki/Extensible_Markup_Language
 
 // ! JSON (Archivo de texto plano)
 // * JavaScript Object Notation
-// * Nos permite transmitir información de manera estandar y liviano del backend al frontend por ejemplo
+// * Nos permite transmitir información de manera estandar y liviano del backend al frontend y viceversa
 
 // https://es.wikipedia.org/wiki/JSON
+// https://www.json.org/json-en.html
 
 // ! PROTOCOLO HTTP
 
@@ -31,7 +36,7 @@ console.warn('/* Comunicación asincrónica con AJAX */')
 // ! Métodos (verbos) HTTP
 
 // Además de los métodos disponibles en los formularios (GET y POST)
-// ABM (acronimo) -> ALTA, BAJA, MODIFICACIÓN
+// ABM (acronimo) ->  ALTA,             MODIFICACIÓN | BAJA
 // CRUD (acronimo) -> C:CREATE | R:READ | U:UPDATE | D:DELETE
 // M.HTTP ->          POST     | GET    | PUT      | DELETE
 
@@ -54,11 +59,11 @@ console.warn('/* Comunicación asincrónica con AJAX */')
 // https://www.youtube.com/shorts/TtYLv8COtJk
 
 // ! Headers HTTP
-// Dentro del protocolo HTTP los archivos va a tener una cabecera de petición y una cabecera de respuesta
+// Dentro del protocolo HTTP los archivos que llegan por el protocolo http va a tener una cabecera de petición y una cabecera de respuesta
 
 // https://developer.mozilla.org/es/docs/Web/HTTP/Headers
 
-// API Productos
+// API Productos (Endpoints -> Rutas -> Points)
 
 // GET -> CRUD -> R:READ -> http://localhost:8080/productos
 // POST -> CRUD -> C:CREATE -> http://localhost:8080/productos + el nuevo producto
