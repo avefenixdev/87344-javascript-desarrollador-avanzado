@@ -51,11 +51,11 @@ const urlReqRes = 'https://reqres.in/api/collections/products/records?project_id
 // fetch(<url>, <options>)
 const peticion = fetch(urlReqRes, {
     headers: {
-        'x-api-key': 'pro_8bea1ceb0c60883f8b714bf5b4b5449d77b03bcf62350fbccf3cdd19ad5f6b08'
+        'x-api-key': import.meta.env.XAPIKEY
     }
 })
 /* then() | catch() */
-/* peticion
+peticion
     .then(res => {
         console.log(res)
         return res.json()
@@ -65,9 +65,10 @@ const peticion = fetch(urlReqRes, {
     })
     .catch(err => {
         console.error(err)
-    }) */
+    })
 // Siempre que dentro de una función utilice await mi función tiene que ser asincronica. Uso la palabra reservada async para convertir una función sincronica en una asincronica
 
+// otra manera de gestionar las promesas -> async await -> try/catch
 const peticionReqRes = async () => {
 
    try {
