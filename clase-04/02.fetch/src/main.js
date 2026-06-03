@@ -49,13 +49,13 @@ peticion
 const urlReqRes = 'https://reqres.in/api/collections/products/records?project_id=27267'
 
 // fetch(<url>, <options>)
-const peticion = fetch(urlReqRes, {
+/* const peticion = fetch(urlReqRes, {
     headers: {
-        'x-api-key': import.meta.env.XAPIKEY
+        'x-api-key': import.meta.env.VITE_XAPIKEY
     }
-})
+}) */
 /* then() | catch() */
-peticion
+/* peticion
     .then(res => {
         console.log(res)
         return res.json()
@@ -65,11 +65,11 @@ peticion
     })
     .catch(err => {
         console.error(err)
-    })
+    }) */
 // Siempre que dentro de una función utilice await mi función tiene que ser asincronica. Uso la palabra reservada async para convertir una función sincronica en una asincronica
 
 // otra manera de gestionar las promesas -> async await -> try/catch
-const peticionReqRes = async () => {
+/* const peticionReqRes = async () => {
 
    try {
         console.log(peticion)
@@ -81,6 +81,18 @@ const peticionReqRes = async () => {
         console.error(error)
    }
 
-}
+} */
 
-peticionReqRes()
+//peticionReqRes()
+
+// ! CRUD completo
+// https://vite.dev/guide/env-and-mode
+const apiProductos = import.meta.env.VITE_API_PRODUCTOS
+console.log(apiProductos);
+
+
+
+
+
+
+
