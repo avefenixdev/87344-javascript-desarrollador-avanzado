@@ -90,9 +90,47 @@ const urlReqRes = 'https://reqres.in/api/collections/products/records?project_id
 const apiProductos = import.meta.env.VITE_API_PRODUCTOS
 console.log(apiProductos);
 
+// CRUD
+// C-> CREATE -> Método/verbo POST
+// R-> READ -> Método/verbo GET
+// U-> UPDATE -> Método/verbo PUT - PATCH
+// D-> DELETE -> Método/verbo DELETE
 
+/* // PUT
+const usuario = {
+    nombre: 'Maxi',
+    apellido: 'Principi',
+    rol: 'Docente',
+    correo: 'maxi@gmail.com'
+}
 
+// > envio objeto completo
+const usuario = {
+    nombre: 'Maxi',
+    apellido: 'Principe',
+    rol: 'Docente',
+    correo: 'maxi@gmail.com'
+} */
 
+/* // PATCH
+const usuario = {
+    nombre: 'Maxi',
+    apellido: 'Principi',
+    rol: 'Docente',
+    correo: 'maxi@gmail.com'
+}
+
+// > envio solo lo que se quiere modificar
+const usuario = {
+    apellido: 'Principe',
+} */
+
+// CRUD
+// C-> CREATE -> Método/verbo POST -> http://localhost:8080/productos/ -> el producto nuevo -> body
+// R-> READ -> Método/verbo GET -> http://localhost:8080/productos/
+// R-> READ -> Método/verbo GET -> http://localhost:8080/productos/id -> obtenego uno solo por id
+// U-> UPDATE -> Método/verbo PUT - PATCH -> http://localhost:8080/productos/id -> el producto editado -> body
+// D-> DELETE -> Método/verbo DELETE -> http://localhost:8080/productos/id 
 
 
 
