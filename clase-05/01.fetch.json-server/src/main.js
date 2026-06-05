@@ -3,96 +3,97 @@ import './style.css'
 const url = 'https://jsonplaceholder.typicode.com/posts/'
 
 // ! Petición para obtener todos los post
-const peticion = fetch(url)
+const anterior = () => {
+    const peticion = fetch(url)
 
-peticion
-    .then((res) => {
-        //console.log(res)
-        const info = res.json()
-        return info
-    })
-    .then((data) => {
-        console.log(data)
-    })
+    peticion
+        .then((res) => {
+            //console.log(res)
+            const info = res.json()
+            return info
+        })
+        .then((data) => {
+            console.log(data)
+        })
 
-// ! Petición para obtener un solo post (el 10)
-const urlId = url + 10
-//console.log(urlId)
-const peticionXId = fetch(urlId)
+    // ! Petición para obtener un solo post (el 10)
+    const urlId = url + 10
+    //console.log(urlId)
+    const peticionXId = fetch(urlId)
 
-// console.log(peticionXId) // promesa
+    // console.log(peticionXId) // promesa
 
-peticionXId
-    .then((res) => {
-        //console.log(res)
-        const promesaJson = res.json()
-        return promesaJson
-    })
-    .then((dataXId) => {
-        console.log(dataXId) // post -> id -> 10
-    })
+    peticionXId
+        .then((res) => {
+            //console.log(res)
+            const promesaJson = res.json()
+            return promesaJson
+        })
+        .then((dataXId) => {
+            console.log(dataXId) // post -> id -> 10
+        })
 
-// ! Petición para obtener un solo post (con el id: 10)
-// Los datos del usuario que creo ese post
-const urlUsuario = 'https://jsonplaceholder.typicode.com/users/'
-const urlIdYUsuario = url + 10 // 'https://jsonplaceholder.typicode.com/posts/' + 10
-//console.log(urlIdYUsuario)
-const peticionXIdConUsuario = fetch(urlIdYUsuario)
+        // ! Petición para obtener un solo post (con el id: 10)
+        // Los datos del usuario que creo ese post
+        const urlUsuario = 'https://jsonplaceholder.typicode.com/users/'
+        const urlIdYUsuario = url + 10 // 'https://jsonplaceholder.typicode.com/posts/' + 10
+        //console.log(urlIdYUsuario)
+        const peticionXIdConUsuario = fetch(urlIdYUsuario)
 
-//console.log(peticionXId) // promesa
+    //console.log(peticionXId) // promesa
 
-/* peticionXIdConUsuario
-    .then((res) => {
-        //console.log(res)
-        const promesaJson = res.json()
-        return promesaJson
-    })
-    .then((dataXId) => {
-        console.log(dataXId) // post -> id -> 10
-        //console.log(dataXId.userId) // id del usuario que creo el post -> usuario -> (id: 1 )
+    /* peticionXIdConUsuario
+        .then((res) => {
+            //console.log(res)
+            const promesaJson = res.json()
+            return promesaJson
+        })
+        .then((dataXId) => {
+            console.log(dataXId) // post -> id -> 10
+            //console.log(dataXId.userId) // id del usuario que creo el post -> usuario -> (id: 1 )
 
-        const urlUsuarioXId = urlUsuario + dataXId.userId
-        //console.log(urlUsuarioXId)
+            const urlUsuarioXId = urlUsuario + dataXId.userId
+            //console.log(urlUsuarioXId)
 
-        const peticionUsuario = fetch(urlUsuarioXId)
+            const peticionUsuario = fetch(urlUsuarioXId)
 
-        return peticionUsuario
-    })
-    .then(resUsuario => {
-        //console.log(resUsuario)
-        return resUsuario.json()
-    })
-    .then(dataUsuario => {
-        //console.log(dataXId)
-        console.log(dataUsuario)
-    })
-    .catch(err => {
-        console.error(err)
-    }) */
+            return peticionUsuario
+        })
+        .then(resUsuario => {
+            //console.log(resUsuario)
+            return resUsuario.json()
+        })
+        .then(dataUsuario => {
+            //console.log(dataXId)
+            console.log(dataUsuario)
+        })
+        .catch(err => {
+            console.error(err)
+        }) */
 
-// ! Petición async con then y catch 
-peticionXIdConUsuario
-    .then((res) => {
-        console.log(res)
-        if (!res.ok) {
-            throw new Error('No se pudo hacer petición para obtener el post')
-        }
-        return res.json()
-    })
-    .then((dataXId) => {
-        console.log(dataXId) 
-        const urlUsuarioXId = urlUsuario + dataXId.userId
-        return fetch(urlUsuarioXId)
-    })
-    .then(resUsuario => {
-        // console.log(resUsuario)
-        if (!resUsuario.ok) {
-            throw new Error('No se pudo obtener el usuario relacionado con el post')
-        }
-        return resUsuario.json()
-    })
-    .then(dataUsuario => console.log(dataUsuario))
-    .catch(err => console.error(err))
+    // ! Petición async con then y catch 
+    peticionXIdConUsuario
+        .then((res) => {
+            console.log(res)
+            if (!res.ok) {
+                throw new Error('No se pudo hacer petición para obtener el post')
+            }
+            return res.json()
+        })
+        .then((dataXId) => {
+            console.log(dataXId) 
+            const urlUsuarioXId = urlUsuario + dataXId.userId
+            return fetch(urlUsuarioXId)
+        })
+        .then(resUsuario => {
+            // console.log(resUsuario)
+            if (!resUsuario.ok) {
+                throw new Error('No se pudo obtener el usuario relacionado con el post')
+            }
+            return resUsuario.json()
+        })
+        .then(dataUsuario => console.log(dataUsuario))
+        .catch(err => console.error(err))
 
 // ! Petición async con async y await 
 
@@ -133,9 +134,10 @@ const peticionPostYUsuario = async () => {
     }
 
 
-}
+    }
 
-peticionPostYUsuario()
+    peticionPostYUsuario()
+}
 
 // CRUD -> API REST
 // C:CREATE -> Protocolo HTTP -> POST
@@ -143,7 +145,7 @@ peticionPostYUsuario()
 // U:UPDATE -> Protocolo HTTP -> PUT
 // D:DELETE -> Protocolo HTTP -> DELETE
 
-const urlProd = 'http://localhost:8080/productos/'
+const urlProd = 'http://localhost:8080/prouctos/'
 
 const getAllProductos = async () => {
 
@@ -151,6 +153,13 @@ const getAllProductos = async () => {
         // url + verbo
         const res = await fetch(urlProd, { method: 'GET'}) // por defecto -> fetch -> petición con el verbo get
         console.log(res)
+
+        /* if ( !res.ok ) {
+            if ( res.status === 404 ) throw new Error('Recurso no encontrado')
+            if ( res.status === 401 ) throw new Error('No autorizado')
+            if ( res.status >= 500 ) throw new Error('Error del servidor')
+        } */
+
         if ( !res.ok ) {
             const error = new Error('No se pudo realizar la petición')
             throw error // break <----- corta la ejecución en el punto en el que se lanza
@@ -158,17 +167,30 @@ const getAllProductos = async () => {
         // pasear el JSON
         const productos = await res.json()
 
-
         if ( !Array.isArray(productos) ) {
             throw new Error('Formato de datos inválido')
         }
 
-        console.warn(productos)
-
+        //console.warn(productos)
+        return productos
     } catch (error) {
-        console.error(error)
+        //console.error(error)
+        throw error
     }
 
 }
 
-getAllProductos()
+// DOMContentLoaded -> se va disparar cuando todo el documento html (DOM) este completamente disponible
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Me veo cuando el DOM esté completamente cargado')
+    try {
+        const productos = await getAllProductos()
+        console.log(productos)
+
+        productos.forEach(prod => {
+            console.log(prod)
+        })
+    } catch (error) {
+        console.error(error)
+    }
+})
