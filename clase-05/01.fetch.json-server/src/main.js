@@ -244,16 +244,47 @@ const btnCrear = document.querySelector('#btn-crear')
 
 btnCrear.addEventListener('click', () => {
     createProducto({
-        nombre: 'GoPro',
+        nombre: 'Drone DJI',
         categoria: 'Electro',
-        precio: 123
+        precio: 323
     })
 })
 
 
-/* const editProducto = () => {
+const editProducto = async (id, productoEditado) => {
 
-} */
+    try {
+        
+        const options = {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(productoEditado)
+        }
+
+        const res = await fetch(urlProd + id, options)
+
+        if ( !res.ok ) {
+            throw new Error('No se pudo editar el producto')
+        }
+
+        const productoActualizado = await res.json()
+        console.log(productoActualizado)
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+const btnEdit = document.querySelector('#btn-edit')
+
+btnEdit.addEventListener('click', ()=> {
+    editProducto("0vxGX3ZVm04", {
+        nombre: 'Go Pro 13',
+        categoria: 'Electo',
+        precio: 1111.22
+    })
+})
 
 /* const urlMockapi = 'https://6a2321575c610353286abd32.mockapi.io/productos/' */
 

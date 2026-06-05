@@ -35,6 +35,30 @@
       "categoria": "Electro",
       "precio": 123,
       "id": "QKCkjPriDaA"
+    },
+    {
+      "nombre": "GoPro",
+      "categoria": "Electro",
+      "precio": 123,
+      "id": "MGiOJHMwBpc"
+    },
+    {
+      "nombre": "Go Pro 13",
+      "categoria": "Electo",
+      "precio": 1111.22,
+      "id": "0vxGX3ZVm04"
+    },
+    {
+      "nombre": "Insta 360 x5",
+      "categoria": "Electro",
+      "precio": 323,
+      "id": "yq-OAFEajbQ"
+    },
+    {
+      "nombre": "Drone DJI",
+      "categoria": "Electro",
+      "precio": 323,
+      "id": "27Km9gWn7So"
     }
   ],
   "clientes": [
