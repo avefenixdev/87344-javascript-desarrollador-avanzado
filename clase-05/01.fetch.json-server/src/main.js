@@ -320,3 +320,32 @@ btn.addEventListener('click', (e) => {
     console.log('borrando...')
     deleteProducto(1)
 })
+
+// Función generica para trabajar con todos los métodos http
+
+const peticionAsincronica = async (url, opciones = {}) => {
+
+    try {
+        
+        const res = await fetch(url, opciones)
+
+        if (!res.ok) {
+            if ( res.status === '404') throw new Error('No encontrado')
+            if ( res.status === '401') throw new Error('No autorizado')
+            if ( res.status >= '500') throw new Error('Error de servidor')
+        }
+
+        const data = await res.json()
+        
+        return data
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+// Ejemplos uso
+peticionAsincronica('url') // GET
+peticionAsincronica('url', {method: 'POST', headers: {}, body: ''}) // POST
+peticionAsincronica('url+id', {method: 'PUT', headers: {}, body: ''}) // PUT
+peticionAsincronica('url+id', {method: 'DELETE'}) // DELETE
