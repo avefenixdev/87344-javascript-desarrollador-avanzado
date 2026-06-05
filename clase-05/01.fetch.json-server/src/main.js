@@ -145,7 +145,7 @@ const peticionPostYUsuario = async () => {
 // U:UPDATE -> Protocolo HTTP -> PUT
 // D:DELETE -> Protocolo HTTP -> DELETE
 
-const urlProd = 'http://localhost:8080/prouctos/'
+const urlProd = 'http://localhost:8080/productos/'
 
 const getAllProductos = async () => {
 
@@ -181,7 +181,7 @@ const getAllProductos = async () => {
 }
 
 // DOMContentLoaded -> se va disparar cuando todo el documento html (DOM) este completamente disponible
-document.addEventListener('DOMContentLoaded', async () => {
+/* document.addEventListener('DOMContentLoaded', async () => {
     console.log('Me veo cuando el DOM esté completamente cargado')
     try {
         const productos = await getAllProductos()
@@ -193,4 +193,99 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error(error)
     }
+}) */
+
+/* const getOne = async (id) => {
+
+    try {
+        
+        const res = await fetch(urlProd + id) // Por defecto en GET
+        console.log(res) // obj repuesta
+        if ( !res.ok ) {
+            throw new Error('No se pudo obtener el producto')
+        }
+
+        const producto = await res.json()
+        console.log(producto)
+
+    } catch (error) {
+        console.error(error)
+    }
+
+} */
+
+//getOne('DDzIAiSrOnY') // id: 'DDzIAiSrOnY'
+
+const createProducto = async (productoAGuardar) => {
+    
+    try {
+
+        const options = {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(productoAGuardar) // convertir el obj de js en un cadena (json)
+        }
+
+        const res = await fetch(urlProd, options)
+
+        if ( !res.ok ) {
+            throw new Error('No se pudo crear el producto')
+        }
+
+        const productoCreadoConId = await res.json()
+        console.log(productoCreadoConId)
+
+    } catch (error) {
+        console.error(error)        
+    }
+}
+
+const btnCrear = document.querySelector('#btn-crear')
+
+btnCrear.addEventListener('click', () => {
+    createProducto({
+        nombre: 'GoPro',
+        categoria: 'Electro',
+        precio: 123
+    })
+})
+
+
+/* const editProducto = () => {
+
+} */
+
+/* const urlMockapi = 'https://6a2321575c610353286abd32.mockapi.io/productos/' */
+
+const deleteProducto = async (id) => {
+
+    try {
+
+        const options = {
+            method: 'DELETE'
+        }
+        //debugger
+        // const res = await fetch(urlProd + id, options)
+        const res = await fetch(urlMockapi + id, options)
+
+        if ( !res.ok ) {
+            throw new Error('No se pudo borrar el producto')
+        }
+
+        //debugger
+        const productoBorrado = await res.json()
+        console.log(productoBorrado)
+        
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+const btn = document.querySelector('#btn')
+
+btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    console.log('borrando...')
+    deleteProducto(1)
 })

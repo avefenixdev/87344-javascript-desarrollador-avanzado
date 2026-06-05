@@ -29,6 +29,12 @@
       "nombre": "Monitor",
       "precio": 333.32,
       "id": "DDzIAiSrOnY"
+    },
+    {
+      "nombre": "GoPro",
+      "categoria": "Electro",
+      "precio": 123,
+      "id": "QKCkjPriDaA"
     }
   ],
   "clientes": [
