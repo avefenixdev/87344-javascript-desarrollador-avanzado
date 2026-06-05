@@ -136,3 +136,39 @@ const peticionPostYUsuario = async () => {
 }
 
 peticionPostYUsuario()
+
+// CRUD -> API REST
+// C:CREATE -> Protocolo HTTP -> POST
+// R:READ -> Protocolo HTTP -> GET
+// U:UPDATE -> Protocolo HTTP -> PUT
+// D:DELETE -> Protocolo HTTP -> DELETE
+
+const urlProd = 'http://localhost:8080/productos/'
+
+const getAllProductos = async () => {
+
+    try {
+        // url + verbo
+        const res = await fetch(urlProd, { method: 'GET'}) // por defecto -> fetch -> petición con el verbo get
+        console.log(res)
+        if ( !res.ok ) {
+            const error = new Error('No se pudo realizar la petición')
+            throw error // break <----- corta la ejecución en el punto en el que se lanza
+        }
+        // pasear el JSON
+        const productos = await res.json()
+
+
+        if ( !Array.isArray(productos) ) {
+            throw new Error('Formato de datos inválido')
+        }
+
+        console.warn(productos)
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+getAllProductos()
