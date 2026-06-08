@@ -166,3 +166,32 @@ export default defineConfig([
   }
 }
 ```
+
+# Desinstalar un paquete en NPM
+
+```sh
+npm uninstall @tailwindcss/vite tailwindcss
+```
+
+# Revisar actualización de paquetes dentro del package.json
+
+```sh
+npm outdated
+```
+
+# Instalando Bootstrap
+
+<https://getbootstrap.com/>
+
+```sh
+npm i bootstrap@5.3.8
+```
+
+````js
+// eslint-disable-next-line no-unused-vars
+import * as bootstrap from 'bootstrap'; 
+```
+
+```css
+@import "bootstrap/dist/css/bootstrap.min.css"; 
+```

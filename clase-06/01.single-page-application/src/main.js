@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused-vars
+import * as bootstrap from 'bootstrap'; // Agrego los scripts de bootstrap
 import './style.css';
 
 const apellido = 'Principe';
