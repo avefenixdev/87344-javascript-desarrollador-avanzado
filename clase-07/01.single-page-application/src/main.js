@@ -20,12 +20,77 @@ async function cargarNav() {
     // ! 3. Inyectar dentro del header el template
     header.innerHTML = template;
     // ! 4. Una vez cargado el navbar voy a cargar el resto d elas páginas
-    await getPlantillaSinHistory();
+    // await getPlantillaSinHistory();
+    await getPlantillaConHistory();
   } catch (error) {
     console.error('No se pudo cargar el navbar', error);
   }
 }
 
+async function getPlantillaConHistory() {
+  console.log('GET Plantillas Con History');
+
+  try {
+    const main = document.querySelector('.container');
+    console.log(main);
+
+    // ! ------------------------
+    // ! Cargamos el HOME -------
+    // ! ------------------------
+    const hash = window.location.hash; // ''
+    console.log(hash); // '#perfil' -> perfil + '.html' -> perfil.html
+    // '' -> home.html
+    const archivo = hash ? hash.slice(1) + '.html' : 'home.html';
+    console.log(archivo);
+
+    const template = await ajax(archivo);
+
+    main.innerHTML = template;
+
+    // ! ------------------------------------------------------------
+    // ! Cargamos el resto de las páginas (según corresponda) -------
+    // ! ------------------------------------------------------------
+    const links = document.querySelectorAll('a');
+    console.log(links); // Lista de nodos de tipo a
+
+    links.forEach((link) => {
+      //console.log(link);
+
+      link.addEventListener('click', async () => {
+        try {
+          console.log(link.id); // perfil, configuraciones, home, etc
+
+          //console.log(window.location.hash);
+          window.location.hash = link.id;
+          //console.log(window.location.hash);
+          const archivo = link.id + '.html';
+          console.log(archivo);
+
+          const template = await ajax(archivo);
+          main.innerHTML = template;
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    });
+    window.addEventListener('hashchange', async () => {
+      const hash = window.location.hash;
+      console.log(hash);
+
+      const archivo = hash ? hash.slice(1) + '.html' : 'home.html';
+      console.log(archivo);
+
+      const template = await ajax(archivo);
+      console.log(template);
+
+      main.innerHTML = template;
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// eslint-disable-next-line no-unused-vars
 async function getPlantillaSinHistory() {
   console.log('GET Plantillas Sin History');
 
@@ -70,6 +135,11 @@ async function getPlantillaSinHistory() {
   }
 }
 
+// https://developer.mozilla.org/es/docs/Web/API/History
+// https://developer.mozilla.org/es/docs/Web/API/Location
+// https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API
+
+// Api Web (History, Location) <- react-router (hook, componentes) <- Aplicación
 function start() {
   cargarNav();
 }
