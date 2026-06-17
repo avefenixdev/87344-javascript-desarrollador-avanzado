@@ -108,18 +108,40 @@ class LocalStorageAPI {
     }
     // Obtener por ID especifico.
     getById(id) {
-        return this.data.find(item => item.id === id) || null;
+        return this.data.find((item) => item.id === id) || null;
     }
 
-    edit() {
+    findById(id) {
+        const index = this.data.findIndex(item => item.id === id);
+        return index;
+    }
 
+    edit(id, updatedEntity) {
+        const index = findById(id)
+        if (index === -1) {
+            throw new Error('Elemento no encontrado')
+        }
+
+        this.data[index] = {
+            ...this.data[index],
+            ...updatedEntity
+        }
+
+        this.save();
+        return this.data[index];
     }
 
     delete(id) {
-        const index = this.data.findIndex(item => item.id === id);
+        const index = findById(id) 
         // findIndex -> devuelve la posición del elemento dentro del array buscando por id.
         // Si lo encuentra devuevle la posición donde se encuentra el elemento, sino lo encuentra devuelve -1
+        if (index === -1) {
+            throw new Error('Elemento no encontrado')
+        }
 
+        const removed = this.data.splice(index, 1);
+        this.save();
+        return removed[0];
     }
 
 }
@@ -134,3 +156,7 @@ console.log(apiLS)
 
 const found = apiLS.getById("4fff2d1a-0410-4388-976f-977b7d4784a5");
 console.log(found)
+
+// https://cloudinary.com/
+// https://cloudinary.com/documentation/javascript_quick_start
+// https://www.npmjs.com/package/sharp
