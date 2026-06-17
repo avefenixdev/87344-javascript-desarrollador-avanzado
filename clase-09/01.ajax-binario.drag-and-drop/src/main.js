@@ -14,15 +14,23 @@ const handleFile = (file) => {
   };
 };
 
+const handleRequestBackendLocal = (archivo) => {
+  console.log('Enviando al backend...');
+  console.log(archivo);
+};
+
 // Eventos
 // Input file
 const inputFile = document.querySelector('#input-file');
 
-inputFile.addEventListener('change', (e) => {
+inputFile.addEventListener('change', async (e) => {
   console.log('Cambió el input!');
   const archivo = e.target.files[0];
   // console.dir(archivo);
+  // ! previsualización de la imagen
   handleFile(archivo);
+  const imagen = await handleRequestBackendLocal(archivo);
+  console.log(imagen); // URL de la imagen subida en el backend (http://localhost:8080/upload/imagen.jpg)
 });
 
 // Drag and Drop
@@ -38,12 +46,15 @@ dropArea.addEventListener('dragleave', (e) => {
   e.preventDefault();
   console.log('dragleave');
 });
-dropArea.addEventListener('drop', (e) => {
+dropArea.addEventListener('drop', async (e) => {
   e.preventDefault();
   console.log('drop');
   // console.log(e.dataTransfer.files[0]);
   const archivo = e.dataTransfer.files[0];
+  // ! previsualización de la imagen
   handleFile(archivo);
+  const imagen = await handleRequestBackendLocal(archivo);
+  console.log(imagen); // URL de la imagen subida en el backend (http://localhost:8080/upload/imagen.jpg)
 });
 
 // Cancelo el comportamiento de abrir el recurso si estoy fuera de la zona de drag & drop
