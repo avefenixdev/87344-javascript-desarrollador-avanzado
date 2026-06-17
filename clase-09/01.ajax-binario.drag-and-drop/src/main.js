@@ -31,7 +31,7 @@ const handleRequestBackendLocal = async (archivo) => {
       body: formData,
     };
 
-    const res = await fetch('http://localhost:8080/subida-archivos', options);
+    const res = await fetch(import.meta.env.VITE_BACKEND_LOCAL, options);
     const data = await res.text();
 
     return data;
@@ -40,7 +40,30 @@ const handleRequestBackendLocal = async (archivo) => {
   }
 };
 
-const handleRequestBackendRemoto = async (archivo) => {};
+const handleRequestBackendRemoto = async (archivo) => {
+  try {
+    const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+    const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
+    // https://api.cloudinary.com/v1_1/<cloud-name>/upload
+    const URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
+    const formData = new FormData();
+    formData.append('file', archivo); // Está esperando la key file
+    formData.append('upload_preset', UPLOAD_PRESET);
+
+    const options = {
+      method: 'POST',
+      body: formData,
+    };
+
+    const res = await fetch(URL, options);
+
+    const data = await res.json();
+    console.log(data); // { secure_url }
+    return data.secure_url;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // Eventos
 // Input file
